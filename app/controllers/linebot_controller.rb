@@ -27,7 +27,7 @@ class LinebotController < ApplicationController
             message = event.message['text']
             if send_msg(message)
                 message = change_msg(message)
-                result_msg = msg.join
+                result_msg = message.join
                 client.reply_message(event['replyToken'], {
                     type: 'text',
                     text: result_msg
