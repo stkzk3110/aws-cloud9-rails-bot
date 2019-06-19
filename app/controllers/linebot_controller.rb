@@ -5,7 +5,6 @@ class LinebotController < ApplicationController
     require "date"
     API_KEY = "94ba2db12c3a322b709522ebe910ec6b"
     BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
-    nowTime = DateTime.now
 
     # callbackアクションのCSRFトークン認証を無効
     protect_from_forgery :except => [:callback]
@@ -27,7 +26,7 @@ class LinebotController < ApplicationController
           when Line::Bot::Event::MessageType::Text
             message = event.message['text']
             if send_msg(message)
-                message = change_msg(msg)
+                message = change_msg(message)
                 result_msg = msg.join
                 client.reply_message(event['replyToken'], {
                     type: 'text',
